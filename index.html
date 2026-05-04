@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CASA LAKE VIEW - 3D Menu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+    <style>
+        body { margin: 0; font-family: sans-serif; background-color: #f0f2f5; text-align: center; }
+        header { background: #1a2a6c; color: white; padding: 20px; }
+        .menu-container { padding: 20px; max-width: 500px; margin: auto; }
+        .food-card { background: white; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        model-viewer { width: 100%; height: 350px; background-color: #ffffff; }
+        .details { padding: 20px; text-align: left; }
+        .price { font-weight: bold; color: #e67e22; font-size: 1.3rem; }
+        h2 { margin: 0; color: #1a2a6c; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CASA LAKE VIEW</h1>
+        <p>Interactive 3D Menu</p>
+    </header>
+
+    <div class="menu-container">
+        <div class="food-card">
+            <!-- This looks for your pizza.glb file -->
+            <model-viewer 
+                src="pizza.glb" 
+                ar 
+                camera-controls 
+                auto-rotate 
+                shadow-intensity="1">
+            </model-viewer>
+            <div class="details">
+                <h2>Fresh Resort Pizza</h2>
+                <p>Deliciously baked with fresh toppings and local spices at Lake Bosomtwe.</p>
+                <p class="price">GHC 90.00</p>
+                <p style="font-size: 0.8rem; color: #999;">Tap the cube icon to see it on your table!</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
