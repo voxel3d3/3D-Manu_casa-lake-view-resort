@@ -6,74 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; text-align: center; color: #333; }
-        header { background: #1a2a6c; color: white; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; color: #333; }
+        header { background: #1a2a6c; color: white; padding: 25px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         
-        .category-title { 
-            background: #e67e22; color: white; padding: 10px; margin: 30px 0 15px 0; 
-            font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;
+        /* THE CATEGORY BOXES */
+        details {
+            max-width: 500px;
+            margin: 15px auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
 
-        .menu-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+        summary {
+            list-style: none;
+            padding: 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            background: #e67e22;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker { display: none; }
         
-        .food-card { background: white; border-radius: 20px; width: 350px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        /* Adds a small arrow that rotates when clicked */
+        summary::after { content: "▼"; font-size: 0.8rem; transition: transform 0.3s; }
+        details[open] summary::after { transform: rotate(180deg); }
+
+        .menu-container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 20px; 
+            gap: 20px;
+            background: #fdfdfd;
+        }
         
-        model-viewer { width: 100%; height: 300px; background-color: #fff; }
+        .food-card { 
+            background: white; 
+            border-radius: 20px; 
+            width: 100%; 
+            max-width: 400px; 
+            overflow: hidden; 
+            border: 1px solid #eee;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        }
         
-        .details { padding: 20px; text-align: left; }
-        .price { font-weight: bold; color: #e67e22; font-size: 1.3rem; margin: 5px 0; }
-        h3 { margin: 0; color: #1a2a6c; }
+        model-viewer { width: 100%; height: 350px; background-color: #fff; }
+        
+        .details-box { padding: 20px; text-align: left; }
+        .price { font-weight: bold; color: #e67e22; font-size: 1.4rem; margin: 5px 0; }
+        h3 { margin: 0; color: #1a2a6c; font-size: 1.6rem; }
+        p { color: #666; font-size: 0.95rem; line-height: 1.5; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>CASA LAKE VIEW</h1>
-        <p>Interactive 3D Menu</p>
+        <p>Tap a category to explore our 3D menu</p>
     </header>
 
-    <!-- PIZZA CATEGORY -->
-    <div class="category-title">Pizzas</div>
-    <div class="menu-container">
-        
-        <div class="food-card">
-            <model-viewer src="pizza.glb" ar camera-controls auto-rotate shadow-intensity="1.5" exposure="1.2" environment-image="neutral"></model-viewer>
-            <div class="details">
-                <h3>Fresh Resort Pizza</h3>
-                <p>Topped with fresh ingredients and Lake Bosomtwe spices.</p>
-                <p class="price">GHC 120.00</p>
+    <!-- PIZZA CATEGORY BOX -->
+    <details>
+        <summary>Pizzas</summary>
+        <div class="menu-container">
+            <div class="food-card">
+                <model-viewer src="pizza.glb" ar camera-controls auto-rotate shadow-intensity="1.5" shadow-softness="0.5" exposure="1.2" environment-image="neutral"></model-viewer>
+                <div class="details-box">
+                    <h3>Fresh Resort Pizza</h3>
+                    <p>Baked fresh at Lake Bosomtwe with local seasonings.</p>
+                    <p class="price">GHC 120.00</p>
+                </div>
+            </div>
+            <!-- Future Pizza types go here -->
+        </div>
+    </details>
+
+    <!-- RICE CATEGORY BOX -->
+    <details>
+        <summary>Rice Dishes</summary>
+        <div class="menu-container">
+            <!-- Jollof Card -->
+            <div class="food-card">
+                <model-viewer src="jollof.glb" poster="https://via.placeholder.com/400x350?text=Jollof+Coming+Soon" ar camera-controls shadow-intensity="1.5" exposure="1.2"></model-viewer>
+                <div class="details-box">
+                    <h3>Ghanaian Jollof</h3>
+                    <p>Authentic smoky party-style jollof rice.</p>
+                    <p class="price">GHC 85.00</p>
+                </div>
+            </div>
+
+            <!-- Fried Rice Card -->
+            <div class="food-card">
+                <model-viewer src="fried_rice.glb" poster="https://via.placeholder.com/400x350?text=Fried+Rice+Coming+Soon" ar camera-controls shadow-intensity="1.5" exposure="1.2"></model-viewer>
+                <div class="details-box">
+                    <h3>Resort Fried Rice</h3>
+                    <p>Wok-fried rice with fresh vegetables and shrimp.</p>
+                    <p class="price">GHC 80.00</p>
+                </div>
             </div>
         </div>
-
-        <!-- Add more pizza cards here in the future -->
-
-    </div>
-
-    <!-- RICE CATEGORY -->
-    <div class="category-title">Rice Dishes</div>
-    <div class="menu-container">
-        
-        <!-- Placeholder for Jollof Rice -->
-        <div class="food-card">
-            <model-viewer src="jollof.glb" poster="https://via.placeholder.com/350x300?text=Jollof+Coming+Soon" ar camera-controls></model-viewer>
-            <div class="details">
-                <h3>Ghanaian Jollof</h3>
-                <p>Authentic smoky jollof served with grilled chicken.</p>
-                <p class="price">GHC 85.00</p>
-            </div>
-        </div>
-
-        <!-- Placeholder for Fried Rice -->
-        <div class="food-card">
-            <model-viewer src="fried_rice.glb" poster="https://via.placeholder.com/350x300?text=Fried+Rice+Coming+Soon" ar camera-controls></model-viewer>
-            <div class="details">
-                <h3>Resort Fried Rice</h3>
-                <p>Wok-fried rice with seasonal vegetables and shrimp.</p>
-                <p class="price">GHC 80.00</p>
-            </div>
-        </div>
-
-    </div>
+    </details>
 
 </body>
 </html>
