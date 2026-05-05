@@ -6,56 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; text-align: center; }
-        header { background: #1a2a6c; color: white; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .menu-container { padding: 20px; max-width: 500px; margin: auto; }
-        .food-card { background: white; border-radius: 25px; overflow: hidden; margin-bottom: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; text-align: center; color: #333; }
+        header { background: #1a2a6c; color: white; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         
-        /* THE VIEWER */
-        model-viewer { 
-            width: 100%; 
-            height: 400px; 
-            background-color: #ffffff;
-            --poster-color: transparent;
+        .category-title { 
+            background: #e67e22; color: white; padding: 10px; margin: 30px 0 15px 0; 
+            font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        .details { padding: 25px; text-align: left; }
-        .price { font-weight: bold; color: #e67e22; font-size: 1.5rem; margin: 10px 0; }
-        h2 { margin: 0; color: #1a2a6c; font-size: 1.8rem; }
-        p { color: #555; line-height: 1.6; }
-        .ar-btn { font-size: 0.85rem; color: #888; font-style: italic; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; }
+        .menu-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+        
+        .food-card { background: white; border-radius: 20px; width: 350px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        
+        model-viewer { width: 100%; height: 300px; background-color: #fff; }
+        
+        .details { padding: 20px; text-align: left; }
+        .price { font-weight: bold; color: #e67e22; font-size: 1.3rem; margin: 5px 0; }
+        h3 { margin: 0; color: #1a2a6c; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>CASA LAKE VIEW</h1>
-        <p>Interactive 3D Dining Experience</p>
+        <p>Interactive 3D Menu</p>
     </header>
 
+    <!-- PIZZA CATEGORY -->
+    <div class="category-title">Pizzas</div>
     <div class="menu-container">
+        
         <div class="food-card">
-            <!-- IMPROVED LIGHTING & SHADOWS -->
-            <model-viewer 
-                src="pizza.glb" 
-                ar 
-                ar-modes="webxr scene-viewer quick-look" 
-                camera-controls 
-                auto-rotate 
-                shadow-intensity="1.5" 
-                shadow-softness="0.5"
-                exposure="1.2"
-                environment-image="neutral"
-                alt="3D Pizza Model for Casa Lake View Resort">
-            </model-viewer>
-
+            <model-viewer src="pizza.glb" ar camera-controls auto-rotate shadow-intensity="1.5" exposure="1.2" environment-image="neutral"></model-viewer>
             <div class="details">
-                <h2>Fresh Resort Pizza</h2>
-                <p>Deliciously baked with fresh toppings and local spices, served hot at Lake Bosomtwe.</p>
+                <h3>Fresh Resort Pizza</h3>
+                <p>Topped with fresh ingredients and Lake Bosomtwe spices.</p>
                 <p class="price">GHC 120.00</p>
-                <p class="ar-btn">Tap the 3D icon to view this pizza on your table!</p>
             </div>
         </div>
+
+        <!-- Add more pizza cards here in the future -->
+
+    </div>
+
+    <!-- RICE CATEGORY -->
+    <div class="category-title">Rice Dishes</div>
+    <div class="menu-container">
+        
+        <!-- Placeholder for Jollof Rice -->
+        <div class="food-card">
+            <model-viewer src="jollof.glb" poster="https://via.placeholder.com/350x300?text=Jollof+Coming+Soon" ar camera-controls></model-viewer>
+            <div class="details">
+                <h3>Ghanaian Jollof</h3>
+                <p>Authentic smoky jollof served with grilled chicken.</p>
+                <p class="price">GHC 85.00</p>
+            </div>
+        </div>
+
+        <!-- Placeholder for Fried Rice -->
+        <div class="food-card">
+            <model-viewer src="fried_rice.glb" poster="https://via.placeholder.com/350x300?text=Fried+Rice+Coming+Soon" ar camera-controls></model-viewer>
+            <div class="details">
+                <h3>Resort Fried Rice</h3>
+                <p>Wok-fried rice with seasonal vegetables and shrimp.</p>
+                <p class="price">GHC 80.00</p>
+            </div>
+        </div>
+
     </div>
 
 </body>
